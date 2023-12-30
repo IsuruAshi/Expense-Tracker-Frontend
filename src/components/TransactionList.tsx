@@ -1,4 +1,5 @@
 import {useGlobalDispatcher, useGlobalList} from "../context/GlobalState.tsx";
+import {Transaction} from "./Transaction.tsx";
 
 export function TransactionList() {
     const transactionList=useGlobalList();
@@ -9,10 +10,7 @@ export function TransactionList() {
             <h3>History</h3>
             <ul id="list" className="list">
                 {transactionList.map(transaction=> (
-                    <li key={transaction.id} className="minus">
-                        {transaction.text} <span>{transaction.amount}</span>
-                        <button className="delete-btn">x</button>
-                    </li>
+                    <Transaction key={transaction.id}{...transaction}/>
                 ))}
             </ul>
         </>
