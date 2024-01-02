@@ -25,7 +25,7 @@ export function Transaction(transaction:TransactionDTO) {
         <>
             <li key={transaction.id} className={transaction.amount<0?'minus':'plus'}>
                 {transaction.text} <span>{sign} Rs.{Math.abs(transaction.amount)}</span>
-                <button onClick={handleDelete} className="delete-btn">x</button>
+                <button onClick={handleDelete} className="delete-btn bg-rose-500 rounded">x</button>
             </li>
         </>
     );

@@ -4,7 +4,7 @@ import {TransactionDTO} from "../transaction-DTO/TransactionDTO.ts";
 
 
 type Action = {
-    type: "add" | "delete",
+    type: "add" | "delete" | "set-list",
     [property: string]: any
 }
 
@@ -19,6 +19,8 @@ function GlobalReducer(transactionList: TransactionDTO[], action: Action) {
     }
     if (action.type === "delete") {
         return transactionList.filter(transaction => transaction.id !== action.id);
+    } else if (action.type === "set-list") {
+        return action.transactionList;
     } else {
         return transactionList;
     }
@@ -26,12 +28,13 @@ function GlobalReducer(transactionList: TransactionDTO[], action: Action) {
 
 export function GlobalProvider({children}: { children: ReactNode }) {
 
-    const dummyTransactions:TransactionDTO[] = [
-        {id: 1, text: 'Flower', amount: -20},
-        {id: 2, text: 'Salary', amount: 300},
-        {id: 3, text: 'Book', amount: -10},
-        {id: 4, text: 'Camera', amount: 150}
-    ];
+    const dummyTransactions = [
+  { id: 1, text: 'Flower', amount: -20 },
+  { id: 2, text: 'Salary', amount: 300 },
+  { id: 3, text: 'Book', amount: -10 },
+  { id: 4, text: 'Camera', amount: 150 }
+];
+
     const [transactionList, transactionDispatcher] = useReducer(GlobalReducer, dummyTransactions);
     return (
         <GlobalContext.Provider value={transactionList}>

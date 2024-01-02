@@ -2,7 +2,7 @@ import {useGlobalList} from "../context/GlobalState.tsx";
 
 export function IncomeExpenses() {
     const transactions=useGlobalList();
-    const amounts = transactions.map(transaction => transaction.amount);
+    const amounts = transactions.map(transaction => +transaction.amount);
     const income = amounts
         .filter(item => item > 0)
         .reduce((acc, item) => (acc += item), 0)
