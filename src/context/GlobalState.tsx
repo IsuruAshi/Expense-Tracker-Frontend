@@ -14,6 +14,7 @@ const GlobalDispatcherContext = createContext<React.Dispatch<Action>>(() => {
 });
 
 function GlobalReducer(transactionList: TransactionDTO[], action: Action) {
+    console.log(action.type);
     if (action.type === "add") {
         return [...transactionList, action.transaction];
     }

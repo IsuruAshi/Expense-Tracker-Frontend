@@ -9,6 +9,7 @@ export function Form() {
     const txtRef = useRef<HTMLInputElement>(null);
     const transactionDispatcher=useGlobalDispatcher();
 
+
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         if (!text.trim()||!amount) return;
@@ -20,22 +21,23 @@ export function Form() {
                 txtRef.current!.focus();
             })
             .catch(err => {
+                console.log(err);
                 alert("Failed to save the task, try again!");
             });
     }
 
     return (
         <>
-            <h3>Add new transaction</h3>
+            <h3 className="text-teal-600 text-2xl font-bold">Add new transaction</h3>
             <form id="form" onSubmit={handleSubmit}>
                 <div className="form-control">
-                    <label htmlFor="text">Text</label>
-                    <input type="text" value={text} onChange={(e)=>setText(e.target.value)} placeholder="Enter text..."/>
+                    <label htmlFor="text" className="text-teal-600 font-semibold">Description</label>
+                    <input ref={txtRef} type="text" value={text} onChange={(e)=>setText(e.target.value)} placeholder="Enter text..."/>
                 </div>
                 <div className="form-control">
                     <label htmlFor="amount" className="text-teal-600 font-semibold"
                     >Amount <br/>
-                        <span className="text-gray-600 text-sm">(negative - expense, positive - income)</span></label
+                        <span className="text-gray-600 text-sm">(Negative - Expenses, Positive - Incomes)</span></label
                     >
                     <input
                            value={amount === 0 ? '' : amount}
