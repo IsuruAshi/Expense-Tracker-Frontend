@@ -26,4 +26,4 @@ This project is licensed under the [MIT License](LICENSE.txt)
 ### Setup
 Clone the repository:
    ```bash
-   https://github.com/IsuruAshi/MultiStore-Angular
+   https://github.com/IsuruAshi/Expense-Tracker-Frontend.git
